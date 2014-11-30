@@ -5,8 +5,7 @@ RUN apt-get update
 RUN apt-get install -y git maven
 RUN apt-get install -y default-jdk
 
-RUN git clone https://github.com/globocom/galeb
-RUN cd galeb && git submodule update --init
+RUN git clone --recursive https://github.com/globocom/galeb
 RUN cd galeb && mvn clean package
 
 RUN apt-get install -y wget
