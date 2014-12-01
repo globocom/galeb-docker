@@ -1,0 +1,25 @@
+{
+  "router":{
+    "instances"             : 4,
+    "port"                  : 8000,
+    "requestTimeOut"        : 20000,
+    "maxPoolSize"           : 10,
+    "minSessionPoolSize"    : 10,
+    "keepaliveMaxRequest"   : 1000,
+    "keepAliveTimeOut"      : 3600
+  },
+  "routemanager":{
+    "instances"             : 1,
+    "port"                  : 9000
+  },
+  "healthmanager":{
+    "instances"             : 1,
+    "checkInterval"         : 5000,
+    "uriHealthCheck"        : "/"
+  },
+  "statsd":{
+    "host"                  : "127.0.0.1",
+    "port"                  : 8125,
+    "prefix"                : "galeb"
+  }
+}

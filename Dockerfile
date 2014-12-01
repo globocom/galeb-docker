@@ -6,13 +6,13 @@ RUN apt-get install -y git maven
 RUN apt-get install -y default-jdk
 
 RUN git clone --recursive https://github.com/globocom/galeb
-RUN cd galeb && mvn clean package
+RUN cd galeb && mvn clean install
+RUN cd galeb && mvn -q dependency:build-classpath -Dmdep.outputFile=/tmp/_classpath -DregenerateFile=true > /dev/null 2>&1
 
-RUN apt-get install -y wget
-RUN wget http://dl.bintray.com/vertx/downloads/vert.x-2.1.1.tar.gz
-RUN tar -zxvf vert.x-2.1.1.tar.gz
-RUN mv vert.x-2.1.1 /opt/
 RUN mv galeb /opt/
+ADD cluster.xml /opt/galeb/
+ADD config.json /opt/galeb/
+ADD log4j.xml /opt/galeb/
 ADD run.sh /usr/bin/
 
 EXPOSE 8000
